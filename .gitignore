@@ -130,3 +130,9 @@ cython_debug/
 
 # VS Code
 .vscode/
+
+# Text backup files
+*.bak
+
+# Database
+*.sqlite3
