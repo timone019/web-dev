@@ -124,4 +124,71 @@ Writing test cases from the beginning of a project is crucial for several reason
    - **Example**: Suppose you’re developing a recipe application where users can add, edit, and delete recipes. Writing tests for these functionalities ensures that each feature works as expected and prevents bugs from being introduced during development.
 
 **2. Facilitates Refactoring:**
-   - **Example**: If you need to refactor the code to optimize the recipe search functionali
+   - **Example**: If you need to refactor the code to optimize the recipe search functionality.
+
+# Exercise 2.4: Django Views and Templates
+Learning Goals
+
+Summarize the process of creating views, templates, and URLs
+Explain how the “V” and “T” parts of MVT architecture work
+Create a frontend page for your web application
+
+## Reflection Questions
+
+### 1. Do some research on Django views. In your own words, use an example to explain how Django views work.
+
+Django views act as the bridge between the models (database) and templates (HTML). They contain the logic for processing requests and returning appropriate responses. When a user makes a request (e.g., visiting a URL), Django matches the URL to a corresponding view function, which then fetches necessary data, processes it, and returns a response—usually an HTML page rendered from a template.
+
+Example:
+Imagine a blog website. When a user visits the homepage, you want to display a list of blog posts. In Django, you create a view that queries the database for all blog posts and then passes that data to a template, which generates the HTML page. Here's a basic example of a Django view:
+
+```python
+from django.shortcuts import render
+from .models import Post
+
+def home(request):
+    posts = Post.objects.all()
+    return render(request, 'blog/home.html', {'posts': posts})
+```
+In this example, the home view queries the Post model for all posts and passes them to the home.html template. The template then handles displaying the posts to the user.
+
+### 2. Imagine you’re working on a Django web development project, and you anticipate that you’ll have to reuse lots of code in various parts of the project. In this scenario, will you use Django function-based views or class-based views, and why?
+
+In this scenario, I would prefer using class-based views (CBVs). CBVs allow for more reusable and organized code by leveraging inheritance and mixins. They offer a modular approach where common functionalities can be abstracted into base classes and reused across different views.
+
+For example, if you have multiple views that handle displaying lists of objects, you can use Django’s ListView class, which provides built-in functionality for querying and rendering lists of objects. You can extend this class to customize behavior as needed. This reduces code duplication and makes the application easier to maintain.
+
+On the other hand, function-based views (FBVs) are more straightforward and might be preferable for simple views or when you need fine-grained control. However, for projects with reusable components, CBVs offer a cleaner and more efficient approach.
+
+### 3. Read Django’s documentation on the Django template language and make some notes on its basics.
+
+- Template Variables:
+Variables enclosed in double curly braces {{ }}. For example, {{ post.title }} will output the title attribute of a post object passed to the template.
+
+- Template Tags:
+Template tags perform logic in the template. They are enclosed in {% %}. For example, {% for post in posts %}...{% endfor %} loops over all post objects.
+
+- Filters:
+Filters modify variables within templates. They are applied using the pipe | symbol. For example, {{ post.title|upper }} will convert the title to uppercase.
+
+- Template Inheritance:
+Django allows templates to extend other templates, making it easy to reuse common layout elements. The base template defines the structure, and child templates override specific blocks. For example:
+
+```html
+<!-- base.html -->
+<html>
+  <body>
+    {% block content %}{% endblock %}
+  </body>
+</html>
+
+<!-- home.html -->
+{% extends 'base.html' %}
+{% block content %}
+  <h1>Welcome to the Blog!</h1>
+{% endblock %}
+
+```
+- Static Files:
+Use {% load static %} to load static files like CSS or JavaScript. For example, <link rel="stylesheet" href="{% static 'css/styles.css' %}">.
+
