@@ -1,11 +1,18 @@
 from django.db import models
 
-# Create your models here.
 # Recipe Model
 class Recipe(models.Model):
+    DIFFICULTY_CHOICES = [
+        ('Easy', 'Easy'),
+        ('Medium', 'Medium'),
+        ('Hard', 'Hard'),
+    ]
+    
     name = models.CharField(max_length=50)
     cooking_time = models.IntegerField()
-    difficulty = models.CharField(max_length=20)
+    difficulty = models.CharField(max_length=20, choices=DIFFICULTY_CHOICES)
+    description = models.TextField(blank=True, null=True)
+    instructions = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return self.name
