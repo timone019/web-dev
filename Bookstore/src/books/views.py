@@ -3,7 +3,7 @@ from django.views.generic import ListView, DetailView   #to display lists & deta
 from .models import Book   
 
 #to protect class-based view
-from django.contrib.auth.mixins import LoginRequiredMixin#to access Book model
+from django.contrib.auth.mixins import LoginRequiredMixin #to access Book model
 
 # Create your views here.
 class BookListView(LoginRequiredMixin, ListView):            #class-based "protected" view

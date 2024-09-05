@@ -262,15 +262,51 @@ Django static files refer to files such as images, CSS, and JavaScript that are 
 *Reflect on your learning journey so far:*
 
 - **How is it going?** 
+  
   I feel like my understanding of Django's MVT architecture is improving as I work through the exercises. Adding functionality to my projects has become more intuitive.
 
 - **What’s something you’re proud of so far?** 
+  
   I'm proud of successfully implementing complex views and getting comfortable with Django's ORM to interact with the database efficiently.
 
 - **Is there something you’re struggling with?** 
+  
   I still find myself struggling with advanced template customization and handling forms with more complex validation logic.
 
 - **What do you need more practice with?** 
+  
   I need more practice with deploying Django applications and optimizing the use of static files in production environments.
 
+# Exercise 2.6: User Authentication in Django
+
+## Learning Goals
+
+- Create authentication for your web application.
+- Use GET and POST methods.
+- Password protect your web application’s views.
+
+## Reflection Questions
+
+### 1. In your own words, write down the importance of incorporating authentication into an application. You can take an example application to explain your answer.
+
+Authentication is crucial for securing access to an application by ensuring that only authorized users can access certain features or data. For example, in an online banking application, authentication ensures that only the account holder can view their account details, make transactions, or update personal information. Without proper authentication, anyone could gain access to sensitive information, leading to potential security breaches and data theft.
+
+### 2. In your own words, explain the steps you should take to create a login for your Django web application.
+
+To create a login for your Django web application, you can follow these steps:
+
+1. **Create a User Model:** Ensure that your application has a user model, either the default Django user model or a custom one.
+2. **Set Up Authentication Views:** Use Django’s built-in `LoginView` or create a custom view for handling user login. This view will handle GET requests to display the login form and POST requests to process login credentials.
+3. **Create a Login Template:** Design an HTML template for the login page that includes fields for the username and password.
+4. **Configure URLs:** Add a URL pattern in your `urls.py` file to point to your login view.
+5. **Restrict Access to Views:** Use Django’s `@login_required` decorator to restrict access to certain views, ensuring that only authenticated users can access them.
+6. **Handle User Sessions:** Once authenticated, Django will create a session for the user, allowing them to stay logged in as they navigate the site.
+
+### 3. Look up the following three Django functions on Django’s official documentation and/or other trusted sources and write a brief description of each.
+
+| Function         | Description                                                                                                                                                      |
+|------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **authenticate()** | `authenticate()` is a Django function used to verify a user's credentials. It takes the username and password as arguments and returns a user object if the credentials are valid. If the credentials are invalid, it returns `None`. This function is typically used in login views to validate user input. |
+| **redirect()**    | `redirect()` is a Django function used to redirect the user to a different URL. It takes a URL or a view name as an argument and returns an HTTP response that directs the user's browser to the specified location. This function is commonly used after a successful form submission or login.               |
+| **include()**     | `include()` is a Django function that allows you to reference other URL configurations. It's used to modularize your `urls.py` file by including URL patterns from other apps or parts of your project. This makes it easier to manage and organize your project's URLs.                                      |
 
