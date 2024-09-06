@@ -1,8 +1,8 @@
 from django.db import models
+from books.models import Book 
 
 # Create your models here.
 
-from books.models import Book 
 #because we need to connect sales with books
 class Sale(models.Model):
     book = models.ForeignKey(Book,on_delete=models.CASCADE) 

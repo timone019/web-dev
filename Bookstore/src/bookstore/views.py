@@ -42,6 +42,6 @@ def login_view(request):
     return render(request, 'auth/login.html', context)
 
 #define a function view called logout_view that takes a request from user
-def logout_view(request):                                  
+def logout_view(request):                                 
     logout(request)             #the use pre-defined Django function to logout
     return redirect('login')    #after logging out go to login form (or whichever page you want)
