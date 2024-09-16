@@ -22,8 +22,10 @@ from .views import login_view, logout_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('sales.urls')),
-    path('books/', include('books.urls')),
+    path('', include('sales.urls', namespace='sales')),
+    path('books/', include('books.urls', namespace='books')),
+    # path('customers/', include('customers.urls')),
+    # path('salespersons/', include('salespersons.urls')),
     path('login/', login_view, name='login'),
     path('logout/', logout_view, name='logout'),
 ]

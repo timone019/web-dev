@@ -1,16 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base/base.html' %}
+{% load static %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Books List</title>
-</head>
+{% block title %}Books List{% endblock %}
 
-<a href ="{%url 'logout' %}"> Logout </a> <!-- add a link to logout -->
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'books/css/books-main.css' %}">
+{% endblock %}
 
-<body>
+{% block content %}
+
     <h1>Books' list</h1> <!-- HTML tag for heading -->
 
     <table border="1" cellpadding="5" cellspacing="5"> <!-- start of table -->
@@ -21,7 +19,7 @@
         {% for object in object_list %} <!-- go through each element of books’ list -->
         <tr>
             <td>
-                <a href="{{ object.get_absolute_url }}"> <!-- add links to book names -->
+                <a href="{{ object.get_absolute_url }}" class="button"> <!-- add links to book names -->
                     {{ object.name }}
                 </a>
             </td>
@@ -31,6 +29,4 @@
         </tr>
         {% endfor %}
     </table>
-</body>
-
-</html>
+{% endblock %}

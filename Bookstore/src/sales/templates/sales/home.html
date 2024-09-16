@@ -1,23 +1,18 @@
+{% extends 'base/base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Bookstore Home</title>
-    <a href ="{%url 'login' %}"> Login </a>
-    <style>
-        body {
-            text-align: center;
-        }
-        img {
-            display: block;
-            margin: 0 auto;
-        }
-    </style>
-</head>
-<body>
+{% block title %}Bookstore Home{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'sales/css/sales-home.css' %}">
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'sales/js/home.js' %}" defer></script>
+{% endblock %}
+
+{% block content %}
     <h1>Welcome to our Bookstore</h1>
     <br>
     <img src="{% static 'sales/images/bookstore.jpg' %}" alt="home" width="900" height="600">
-</body>
-</html>
+{% endblock %}
