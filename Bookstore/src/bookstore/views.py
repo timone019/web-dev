@@ -29,9 +29,9 @@ def login_view(request):
             if user is not None:                    #if user is authenticated
             #then use pre-defined Django function to login
                 login(request, user)                
-                return redirect('sales:records') #& send the user to desired page
+                return redirect('books:home') #& send the user to desired page
         else:                                               #in case of error
-            error_message ='ooops.. something went wrong'   #print error message
+            error_message ='Invalid credentials'   #print error message
 
     #prepare data to send from view to template
     context ={                                             

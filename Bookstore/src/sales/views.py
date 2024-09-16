@@ -27,25 +27,28 @@ def records(request):
         #read book_title and chart_type
         book_title = request.POST.get('book_title')
         chart_type = request.POST.get('chart_type')
+        show_all = request.POST.get('show_all')
+        
+        if show_all:
+            # Fetch all records if "Show All" is selected
+            qs = Sale.objects.all()
+        else:
+            #apply filter to extract data
+            qs =Sale.objects.filter(book__name=book_title)
 
-        #apply filter to extract data
-        qs =Sale.objects.filter(book__name=book_title)
         if qs:      #if data found
             #convert the queryset values to pandas dataframe
             sales_df=pd.DataFrame(qs.values())
+            print(sales_df)
+            #call get_chart by passing chart_type from user input, sales dataframe and labels
+            chart=get_chart(chart_type, sales_df, labels=sales_df['book_id'].values)
             #convert the ID to Name of book
             sales_df['book_id']=sales_df['book_id'].apply(get_bookname_from_id)
-        
-            #call get_chart by passing chart_type from user input, sales dataframe and labels
-            chart=get_chart(chart_type, sales_df, labels=sales_df['date_created'].values)
-
             #convert the dataframe to HTML
             sales_df=sales_df.to_html()
         
         #display in terminal - needed for debugging during development only
-        print (book_title, chart_type)
-
-
+        print (book_title, chart_type, show_all)
         print ('Exploring querysets:')
         print ('Case 1: Output of Sale.objects.all()')
         qs=Sale.objects.all()
